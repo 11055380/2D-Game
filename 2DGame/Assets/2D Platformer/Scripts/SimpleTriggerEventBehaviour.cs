@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-
 public class EnemyFade : MonoBehaviour
 {
     public float fadeSpeed = 2f;
+    public float detectionRadius = 1f; // Adjust detection radius as needed
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("Player")))
         {
-            Debug.Log("Collision detected!");   
-
             StartCoroutine(FadeOut());
         }
     }
