@@ -78,15 +78,14 @@ namespace Platformer
             isGrounded = colliders.Length > 1;
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (other.gameObject.tag == "Enemy")
             {
-                deathState = true; // Say to GameManager that player is dead
-            }
-            else
-            {
-                deathState = false;
+                if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))   
+
+                {
+                    animator.SetTrigger("Hit");
+                }
             }
         }
 
