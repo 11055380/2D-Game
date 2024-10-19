@@ -3,6 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+
+public class EnemyFade : MonoBehaviour
+{
+    public float fadeSpeed = 2f;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Collision detected!");   
+
+            StartCoroutine(FadeOut());
+        }
+    }
+
+
+    private IEnumerator FadeOut()
+    {
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        Color originalColor = renderer.color;
+
+        float elapsedTime = 0f;
+        while (elapsedTime < 1f)
+        {
+            elapsedTime += Time.deltaTime / fadeSpeed;
+            renderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f - elapsedTime);
+            yield return null;
+        }
+
+        // Destroy the enemy object after fading
+        Destroy(gameObject);
+    }
+}
+
+
+
+
+/*
 public class SimpleTriggerEventBehaviour : MonoBehaviour
 {
     public UnityEvent triggerEvent;
@@ -29,3 +68,4 @@ public class SimpleTriggerEventBehaviour : MonoBehaviour
         }
     }
 }
+*/
