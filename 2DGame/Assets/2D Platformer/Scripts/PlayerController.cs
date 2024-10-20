@@ -86,6 +86,10 @@ namespace Platformer
                 {
                     animator.SetTrigger("Hit");
                 }
+                else
+                {
+                    animator.SetTrigger("Idle");
+                }
             }
         }
 
