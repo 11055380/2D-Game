@@ -77,15 +77,7 @@ namespace Platformer
             Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, 0.2f);
             isGrounded = colliders.Length > 1;
         }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-            {
-                animator.SetTrigger("Hit");
-                Debug.Log("Hit detected!");
-            }
-        }
+        
 
         private void OnTriggerEnter2D(Collider2D other)
         {
