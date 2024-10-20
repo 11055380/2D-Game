@@ -80,16 +80,10 @@ namespace Platformer
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
-                if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))   
-
-                {
-                    animator.SetTrigger("Hit");
-                }
-                else
-                {
-                    animator.SetTrigger("Idle");
-                }
+                animator.SetTrigger("Hit");
+                Debug.Log("Hit detected!");
             }
         }
 
