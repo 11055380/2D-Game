@@ -9,6 +9,18 @@ public class PlayerCollision : MonoBehaviour
     public float hitAnimationDuration; // Duration of the "Hit" animation
 
     private bool isHit = false;
+    
+    //Health
+    public HealthBar healthBar;
+    public int maxHealth = 100;
+    public int currentHealth;
+    
+    //Health
+    void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
 
     private void Update()
     {
@@ -21,7 +33,16 @@ public class PlayerCollision : MonoBehaviour
             animator.SetTrigger("Hit");
             isHit = true;
             StartCoroutine(StopHitAnimation());
+            //Health
+            TakeDamage(20);
         }
+    }
+    
+    //Health
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 
     private IEnumerator StopHitAnimation()
