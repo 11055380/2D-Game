@@ -18,8 +18,10 @@ public class PlayerCollision : MonoBehaviour
     //Health
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = 1;
+        healthBar.SetHealth(currentHealth);
         healthBar.SetMaxHealth(maxHealth);
+        TakeDamage(10);
     }
 
     private void Update()
@@ -41,7 +43,7 @@ public class PlayerCollision : MonoBehaviour
     //Health
     void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        currentHealth += damage;
         healthBar.SetHealth(currentHealth);
     }
 

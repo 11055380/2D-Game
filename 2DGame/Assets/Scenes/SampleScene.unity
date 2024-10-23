@@ -364,10 +364,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1513731449}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 20
   m_WholeNumbers: 1
-  m_Value: 20
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -847,7 +847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.65882355}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1895,7 +1895,7 @@ MonoBehaviour:
   hitAnimationDuration: 1
   healthBar: {fileID: 480369269}
   maxHealth: 100
-  currentHealth: 100
+  currentHealth: 2
 --- !u!61 &1993680765
 BoxCollider2D:
   m_ObjectHideFlags: 0
