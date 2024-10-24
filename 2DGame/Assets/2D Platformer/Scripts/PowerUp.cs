@@ -7,7 +7,7 @@ public class PowerUpSlider : MonoBehaviour
 {
     public Slider powerUpSlider;
     public float maxPowerUpValue = 100f;
-    public float regenerationRate = 5f; // Increased regeneration rate
+    public float regenerationRate = 50f; // Increased regeneration rate
     public float cooldownDuration = 2f; // Cooldown duration after animation
     public Animator playerAnimator;
     public string powerUpTrigger = "PowerUp";
@@ -27,6 +27,7 @@ public class PowerUpSlider : MonoBehaviour
 
         if (!isOnCooldown)
         {
+            playerAnimator.SetTrigger("Idle");
             currentPowerUpValue += regenerationRate * Time.deltaTime;
             currentPowerUpValue = Mathf.Clamp(currentPowerUpValue, 0f, maxPowerUpValue);
         }
