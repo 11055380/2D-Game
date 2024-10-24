@@ -9,28 +9,8 @@ public class EnemyFade : MonoBehaviour
 {
     public float fadeSpeed = 2f;
     public float detectionRadius = 1f; // Adjust detection radius as needed
-
-    //Health
-    public HealthBar healthBar;
-    public int maxHealth = 100;
-    public int currentHealth;
     
-    //Health
-    void Start()
-    {
-        currentHealth = 100;
-        GameObject healthBarObject = GameObject.Find("Health Bar2");
-        if (healthBarObject != null)
-        {
-            healthBar = healthBarObject.GetComponent<HealthBar>();
-            healthBar.SetMaxHealth(maxHealth);
-            healthBar.SetHealth(currentHealth);
-        }
-        else
-        {
-            Debug.LogError("Health Bar2 not found by name.");
-        }
-    }
+    
     private void Update()
     {
         if (Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("Player")))
@@ -39,13 +19,6 @@ public class EnemyFade : MonoBehaviour
         }
     }
     
-    //Health
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-    }
-
 
     private IEnumerator FadeOut()
     {
@@ -53,12 +26,6 @@ public class EnemyFade : MonoBehaviour
         Color originalColor = renderer.color;
 
         float elapsedTime = 0f;
-        //Health
-        for (int i=0; i<=10; i++)
-        {
-            TakeDamage(10); 
-            Thread.Sleep(500);
-        }
         
         while (elapsedTime < 1f)
         {
