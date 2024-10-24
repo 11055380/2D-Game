@@ -2199,9 +2199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227299db904d19c4f9e6d54e1ac08c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpSlider: {fileID: 0}
+  powerUpSlider: {fileID: 2027084646}
   maxPowerUpValue: 100
-  playerAnimator: {fileID: 0}
+  regenerationRate: 1
+  cooldownDuration: 2
+  playerAnimator: {fileID: 1993680757}
   powerUpTrigger: PowerUp
 --- !u!1 &2027084644
 GameObject:

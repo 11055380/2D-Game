@@ -7,23 +7,35 @@ public class PowerUpSlider : MonoBehaviour
 {
     public Slider powerUpSlider;
     public float maxPowerUpValue = 100f;
+    public float regenerationRate = 5f; // Increased regeneration rate
+    public float cooldownDuration = 2f; // Cooldown duration after animation
     public Animator playerAnimator;
     public string powerUpTrigger = "PowerUp";
 
-    private float currentPowerUpValue = 0f;
+    private float currentPowerUpValue = 100f;
+    private bool isOnCooldown = false;
 
-    public void IncreasePowerUp(float amount)
+    private void Update()
     {
-        if (currentPowerUpValue < maxPowerUpValue)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && currentPowerUpValue >= maxPowerUpValue && !isOnCooldown)
         {
-            currentPowerUpValue += amount;
-            currentPowerUpValue = Mathf.Clamp(currentPowerUpValue, 0f, maxPowerUpValue);
-        }
-        else
-        {
-            // Trigger the animation when the slider is full
             playerAnimator.SetTrigger(powerUpTrigger);
             currentPowerUpValue = 0f;
+            isOnCooldown = true;
+            Invoke("EndCooldown", cooldownDuration);
         }
+
+        if (!isOnCooldown)
+        {
+            currentPowerUpValue += regenerationRate * Time.deltaTime;
+            currentPowerUpValue = Mathf.Clamp(currentPowerUpValue, 0f, maxPowerUpValue);
+        }
+
+        powerUpSlider.value = currentPowerUpValue;
+    }
+
+    private void EndCooldown()
+    {
+        isOnCooldown = false;
     }
 }
