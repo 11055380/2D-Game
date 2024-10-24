@@ -2205,6 +2205,7 @@ MonoBehaviour:
   cooldownDuration: 2
   playerAnimator: {fileID: 1993680757}
   powerUpTrigger: PowerUp
+  idleTrigger: Idle
 --- !u!1 &2027084644
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,10 +2287,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1602301258}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 100
-  m_WholeNumbers: 0
-  m_Value: 100
+  m_MinValue: 0
+  m_MaxValue: 10
+  m_WholeNumbers: 1
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
