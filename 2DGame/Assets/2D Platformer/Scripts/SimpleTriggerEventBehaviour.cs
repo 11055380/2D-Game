@@ -7,18 +7,39 @@ using System.Threading;
 
 public class EnemyFade : MonoBehaviour
 {
-    public float fadeSpeed = 2f;
+    public float fadeSpeed = 4f;
     public float detectionRadius = 1f; // Adjust detection radius as needed
-    
-    
+    public float moveSpeed = .5f; // Speed of the enemy's movement
+    public float moveRange = 100f; // Range of side-to-side movement
+
+    private Vector3 startingPosition;
+
+    private void Start()
+    {
+        startingPosition = transform.position; // Store the starting position
+    }
+
     private void Update()
     {
+        // Move the enemy side to side
+        Move();
+
+        // Check for player detection
         if (Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("Player")))
         {
             StartCoroutine(FadeOut());
         }
     }
-    
+
+    private void Move()
+    {
+        // Calculate new position based on the starting position and move range
+        float newPosX = startingPosition.x + Mathf.Sin(Time.time * moveSpeed) * (moveRange / 2);
+        transform.position = new Vector3(newPosX, transform.position.y, transform.position.z);
+    }
+
+
+
 
     private IEnumerator FadeOut()
     {
@@ -38,6 +59,7 @@ public class EnemyFade : MonoBehaviour
         Destroy(gameObject);
     }
 }
+
 
 
 
