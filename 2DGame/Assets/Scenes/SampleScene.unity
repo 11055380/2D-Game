@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95cb420cc4f280d418bc5878348c2faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 1
+  fadeSpeed: 0.5
   detectionRadius: 0.02
   moveSpeed: 2
   moveRange: 4
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95cb420cc4f280d418bc5878348c2faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeSpeed: 1
+  fadeSpeed: 0.5
   detectionRadius: 0.02
   moveSpeed: 2
   moveRange: 3
