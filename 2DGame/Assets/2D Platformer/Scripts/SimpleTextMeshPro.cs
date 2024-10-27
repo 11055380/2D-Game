@@ -13,11 +13,23 @@ public class SimpleTextMeshProBehaviour : MonoBehaviour
     private void Start()
     {
         textObj = GetComponent<TextMeshProUGUI>();
-        UpdateWithIntData();
+        UpdateWithIntData(dataObj.value); // Initial update
+        if (dataObj != null)
+        {
+            dataObj.OnValueChanged += UpdateWithIntData; // Subscribe to the event
+        }
     }
 
-    public void UpdateWithIntData()
+    private void OnDestroy()
     {
-        textObj.text = dataObj.value.ToString(CultureInfo.InvariantCulture);
+        if (dataObj != null)
+        {
+            dataObj.OnValueChanged -= UpdateWithIntData; // Unsubscribe when destroyed
+        }
+    }
+
+    public void UpdateWithIntData(int newValue) // Now takes the new value
+    {
+        textObj.text = "Coins: " + newValue.ToString(CultureInfo.InvariantCulture);
     }
 }
