@@ -9,27 +9,42 @@ public class TriggerEvent : MonoBehaviour
 {
     public float detectionRadius = 1f; // Adjust detection radius as needed
     private SimpleIntData simpleIntData; // Reference to SimpleIntData script
+    private AudioSource audioSource; //Audio
 
     private void Start()
     {
         // Find the SimpleIntData component (make sure it's attached to an object in the scene)
         simpleIntData = FindObjectOfType<SimpleIntData>();
+        audioSource = GetComponent<AudioSource>(); //Audio
+        audioSource.pitch = 3.0f;
+        audioSource.time = audioSource.clip.length / 3;
     }
+
+    private bool hasPlayed = false;
 
     private void Update()
     {
-        // Check for the player in the detection radius
-        if (Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("Player")))
+        if (Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("Player")) && !hasPlayed)
         {
-            // Call UpdateValue to increase score by 1
+            audioSource.Play();
+            hasPlayed = true;
+
             if (simpleIntData != null)
             {
-                simpleIntData.UpdateValue(1); // Adjust as necessary for your scoring system
+                simpleIntData.UpdateValue(1);
             }
 
-            // Optionally destroy the fruit object
-            Destroy(gameObject);
+            Invoke("DestroyCoin", .5f);
         }
+        else if (!Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("Player")))
+        {
+            hasPlayed = false; // Reset flag when player exits detection
+        }
+    }
+
+    private void DestroyCoin()
+    {
+        Destroy(gameObject);
     }
 }
 
