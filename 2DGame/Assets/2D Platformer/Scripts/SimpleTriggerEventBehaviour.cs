@@ -11,12 +11,16 @@ public class EnemyFade : MonoBehaviour
     public float detectionRadius = 1f; // Adjust detection radius as needed
     public float moveSpeed = .5f; // Speed of the enemy's movement
     public float moveRange = 100f; // Range of side-to-side movement
+    private AudioSource audioSource; //Audio
 
     private Vector3 startingPosition;
 
     private void Start()
     {
         startingPosition = transform.position; // Store the starting position
+        audioSource = GetComponent<AudioSource>(); //Audio
+        audioSource.pitch = 3.0f;
+        audioSource.time = audioSource.clip.length / 3;
     }
 
     private void Update()
@@ -27,8 +31,14 @@ public class EnemyFade : MonoBehaviour
         // Check for player detection
         if (Physics2D.OverlapCircle(transform.position, detectionRadius, LayerMask.GetMask("Player")))
         {
+            audioSource.Play();
             StartCoroutine(FadeOut());
         }
+    }
+    
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 
     private void Move()
@@ -56,7 +66,7 @@ public class EnemyFade : MonoBehaviour
         }
 
         // Destroy the enemy object after fading
-        Destroy(gameObject);
+        Invoke("DestroyEnemy",1f);
     }
 }
 
