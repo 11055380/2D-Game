@@ -19,7 +19,7 @@ public class EnemyFade : MonoBehaviour
     {
         startingPosition = transform.position; // Store the starting position
         audioSource = GetComponent<AudioSource>(); //Audio
-        audioSource.pitch = 3.0f;
+        audioSource.pitch = 4.0f;
         audioSource.time = audioSource.clip.length / 3;
     }
 
